@@ -11,6 +11,7 @@ namespace UserRegistrationRegEx
     {
         string firstName = "^[A-Z]{1}[a-z]{2,}";
         string lastName  = "^[A-Z]{1}[a-z]{2,}";
+        string email = "^(abc).?(xyz)?@(bl){1}.?(co)?.(in){1}";
         public void FirstNameValidCheck(string fname)
         {
             if (Regex.Match(fname, firstName).Success)
@@ -28,6 +29,15 @@ namespace UserRegistrationRegEx
                 return;
             }
             Console.WriteLine("Last name isn't Valid...Re-Enter!");
+        }
+        public void ValidateMailId(string mailId)
+        {
+            if (Regex.Match(mailId, email).Success)
+            {
+                Console.WriteLine("Entered Email-Id is Valid");
+                return;
+            }
+            Console.WriteLine("Email-Id isn't Valid...Re-Enter!");
         }
     }
 }
