@@ -28,3 +28,9 @@ string phoneNo = Console.ReadLine();
 registrationCheck.ValidatePhoneNo(phoneNo);
 Console.WriteLine();
 
+/* ----- PASSWORD  ----- */
+
+Console.WriteLine("Enter the Password :");
+string pwd = Console.ReadLine();
+registrationCheck.ValidatePassword(pwd);
+Console.WriteLine();
