@@ -18,7 +18,8 @@ namespace UserRegistrationRegEx
         string hasMin8Chars =@".{8,}";
         string hasANumber = @"[0-9]+";
         string specialChar = @"[\W]+";
-        
+        string sampleMailIds = "^[a-zA-Z]+[0-9]*([._+-][0-9A-Za-z]+)*@[a-zA-Z]+.([a-zA-Z]{2,}.)?[a-zA-Z]{2,3}$";
+
         public void FirstNameValidCheck(string fname)
         {
             if (Regex.Match(fname, firstName).Success)
@@ -96,5 +97,15 @@ namespace UserRegistrationRegEx
             Console.WriteLine("Password isn't Valid-Must have atleast 1 special Character...Re-Enter!");
         }
 
+        public void CheckSampleMailIds(string emailID)
+        {
+            if (Regex.Match(emailID.Trim(), sampleMailIds).Success)
+            {
+                Console.WriteLine("Email-Id -- {0} --> Valid", emailID);
+                return;
+            }
+            Console.WriteLine("Email-Id -- {0} --> INVALID...Re-Enter!", emailID);
+        }
+        
     }
 }

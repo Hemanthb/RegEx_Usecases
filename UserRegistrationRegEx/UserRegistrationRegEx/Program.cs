@@ -40,3 +40,12 @@ registrationCheck.ValidatePasswordRule3(pwd);
 Console.WriteLine("----RULE:4 ATLEAST 1 SPECIAL CHAR----");
 registrationCheck.ValidatePasswordRule4(pwd);
 Console.WriteLine();
+
+/* ----- SAMPLE MAIL-ID's ----- */
+
+Console.WriteLine("Enter a sample Id :");
+string sample = Console.ReadLine();
+registrationCheck.CheckSampleMailIds(sample);
+string[] sampleId = File.ReadAllLines(@"D:\blabz_fellowship\RegEx_Usecases\UserRegistrationRegEx\UserRegistrationRegEx\MailIds.txt");
+foreach (string id in sampleId)
+    registrationCheck.CheckSampleMailIds(id);
