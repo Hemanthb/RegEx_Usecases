@@ -17,6 +17,8 @@ namespace UserRegistrationRegEx
         string oneUpperCase = @"[A-Z]+";
         string hasMin8Chars =@".{8,}";
         string hasANumber = @"[0-9]+";
+        string specialChar = @"[\W]+";
+        
         public void FirstNameValidCheck(string fname)
         {
             if (Regex.Match(fname, firstName).Success)
@@ -83,5 +85,16 @@ namespace UserRegistrationRegEx
             }
             Console.WriteLine("Password isn't Valid-Must have atleast 1 number...Re-Enter!");
         }
+        public void ValidatePasswordRule4(string pwd)
+        {
+            if (Regex.Match(pwd, password).Success && Regex.Match(pwd, hasMin8Chars).Success && Regex.Match(pwd, oneUpperCase).Success &&
+                Regex.Match(pwd, hasANumber).Success && Regex.Match(pwd,specialChar).Success)
+            {
+                Console.WriteLine("Entered Password is valid & passes rule-4");
+                return;
+            }
+            Console.WriteLine("Password isn't Valid-Must have atleast 1 special Character...Re-Enter!");
+        }
+
     }
 }
