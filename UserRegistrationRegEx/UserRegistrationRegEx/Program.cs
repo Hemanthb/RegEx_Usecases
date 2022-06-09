@@ -36,3 +36,5 @@ registrationCheck.ValidatePassword(pwd);
 Console.WriteLine();
 registrationCheck.ValidatePasswordRule2(pwd);
 Console.WriteLine();
+registrationCheck.ValidatePasswordRule3(pwd);
+Console.WriteLine();
