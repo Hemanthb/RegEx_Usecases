@@ -34,3 +34,5 @@ Console.WriteLine("Enter the Password :");
 string pwd = Console.ReadLine();
 registrationCheck.ValidatePassword(pwd);
 Console.WriteLine();
+registrationCheck.ValidatePasswordRule2(pwd);
+Console.WriteLine();

@@ -13,7 +13,11 @@ namespace UserRegistrationRegEx
         string lastName  = "^[A-Z]{1}[a-z]{2,}";
         string email = "^(abc).?(xyz)?@(bl){1}.?(co)?.(in){1}";
         string phone = @"^[0-9]{2}\s[0-9]{10}$";
-        string password = "[a-z]{8,}";
+        string password = "[a-z]*";
+        //var hasMinOneUppercase = new Regex(@"[A-Z]+");
+        string oneUpperCase = @"[A-Z]+";
+        string hasMin8Chars =@".{8,}";
+
         public void FirstNameValidCheck(string fname)
         {
             if (Regex.Match(fname, firstName).Success)
@@ -53,9 +57,18 @@ namespace UserRegistrationRegEx
         }
         public void ValidatePassword(string pwd)
         {
-            if (Regex.Match(pwd, password).Success)
+            if (Regex.Match(pwd, password).Success && Regex.Match(pwd,hasMin8Chars).Success)
             {
                 Console.WriteLine("Entered Password is Valid");
+                return;
+            }
+            Console.WriteLine("Password isn't Valid...Re-Enter!");
+        }
+        public void ValidatePasswordRule2(string pwd)
+        {
+            if (Regex.Match(pwd, password).Success && Regex.Match(pwd,hasMin8Chars).Success && Regex.Match(pwd, oneUpperCase).Success)
+            {
+                Console.WriteLine("Entered Password is valid & passes rule-2");
                 return;
             }
             Console.WriteLine("Password isn't Valid...Re-Enter!");
