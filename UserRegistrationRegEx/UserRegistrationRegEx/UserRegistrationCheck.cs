@@ -22,7 +22,8 @@ namespace UserRegistrationRegEx
 
         public bool FirstNameValidCheck(string fname)
         {
-            if (Regex.Match(fname, firstName).Success)
+            Func<string, bool> match = fname => Regex.Match(fname, firstName).Success;
+            if (match(fname))
             {
                 Console.WriteLine("First Name Entered is Valid");
                 return true;
@@ -35,7 +36,8 @@ namespace UserRegistrationRegEx
         }
         public bool LastNameValidCheck(string lname)
         {
-            if (Regex.Match(lname, lastName).Success)
+            Func<string, bool> match = lname => Regex.Match(lname, lastName).Success;
+            if (match(lname))
             {
                 Console.WriteLine("Last Name Entered is Valid");
                 return true;
@@ -49,7 +51,8 @@ namespace UserRegistrationRegEx
         }
         public void ValidateMailId(string mailId)
         {
-            if (Regex.Match(mailId, email).Success)
+            Func<string, bool> match = mailId => Regex.Match(mailId, email).Success;
+            if (match(mailId))
             {
                 Console.WriteLine("Entered Email-Id is Valid");
                 return;
@@ -61,7 +64,8 @@ namespace UserRegistrationRegEx
 
         public bool ValidatePhoneNo(string phoneNo)
         {
-            if (Regex.Match(phoneNo, phone).Success)
+            Func<string, bool> match = phoneNo => Regex.Match(phoneNo, phone).Success;
+            if (match(phoneNo))
             {
                 Console.WriteLine("Entered Phone No is Valid");
                 return true;
@@ -118,7 +122,8 @@ namespace UserRegistrationRegEx
 
         public bool CheckSampleMailIds(string emailID)
         {
-            if (Regex.Match(emailID.Trim(), sampleMailIds).Success)
+            Func<string, bool> match = emailID => Regex.Match(emailID, sampleMailIds).Success;
+            if (match(emailID))
             {
                 Console.WriteLine("Email-Id -- {0} --> Valid", emailID);
                 return true;
