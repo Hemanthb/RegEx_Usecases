@@ -6,10 +6,11 @@ namespace UserRegistrationTest
         [Test]
         public void GivenFirstName_ChecksRegexPattern_ReturnTrueIfMatches()
         {
-            string fName = "Hari";
-            UserRegistrationRegEx.UserRegistrationCheck check = new UserRegistrationRegEx.UserRegistrationCheck();
-            bool actualResult = check.FirstNameValidCheck(fName);
-            Assert.IsTrue(actualResult);
+                string fName = "Hari";
+                UserRegistrationRegEx.UserRegistrationCheck check = new UserRegistrationRegEx.UserRegistrationCheck();
+                bool actualResult = check.FirstNameValidCheck(fName);
+                Assert.IsTrue(actualResult);
+            
         }
         [Test]
         public void GivenLasttName_ChecksRegexPattern_ReturnTrueIfMatches()
@@ -52,8 +53,80 @@ namespace UserRegistrationTest
             bool actualResult;
             foreach (string id in sampleId)
                 Assert.IsTrue(check.CheckSampleMailIds(id));
+        }
+        [Test]
+        public void GivenInvalidFirstName_ChecksRegexPattern_ThrowsExcapetion()
+        {
+            try
+            {
+                string fName = "hari";
+                UserRegistrationRegEx.UserRegistrationCheck check = new UserRegistrationRegEx.UserRegistrationCheck();
+                bool actualResult = check.FirstNameValidCheck(fName);
+            }
+            catch(UserRegistrationRegEx.UserDetailsException exc)
+            {
+                Assert.AreEqual("Invalid First Name", exc.Message);
+            }
 
+        }
+        [Test]
+        public void GivenInvalidLastName_ChecksRegexPattern_ThrowsExcapetion()
+        {
+            try
+            {
+                string lName = "H";
+                UserRegistrationRegEx.UserRegistrationCheck check = new UserRegistrationRegEx.UserRegistrationCheck();
+                bool actualResult = check.LastNameValidCheck(lName);
+            }
+            catch (UserRegistrationRegEx.UserDetailsException exc)
+            {
+                Assert.AreEqual("Invalid Last Name", exc.Message);
+            }
 
+        }
+        [Test]
+        public void GivenInvalidEmailId_ChecksRegexPattern_ThrowsExcapetion()
+        {
+            try
+            {
+                string mail = "hari@gm.1";
+                UserRegistrationRegEx.UserRegistrationCheck check = new UserRegistrationRegEx.UserRegistrationCheck();
+                bool actualResult = check.CheckSampleMailIds(mail);
+            }
+            catch (UserRegistrationRegEx.UserDetailsException exc)
+            {
+                Assert.AreEqual("Invalid EmailID", exc.Message);
+            }
+
+        }
+        [Test]
+        public void GivenInvalidPhoneNo_ChecksRegexPattern_ThrowsExcapetion()
+        {
+            try
+            {
+                string phno = "98989898";
+                UserRegistrationRegEx.UserRegistrationCheck check = new UserRegistrationRegEx.UserRegistrationCheck();
+                bool actualResult = check.ValidatePhoneNo(phno);
+            }
+            catch (UserRegistrationRegEx.UserDetailsException exc)
+            {
+                Assert.AreEqual("Invalid Phone Number", exc.Message);
+            }
+
+        }
+        [Test]
+        public void GivenInvalidPassword_ChecksRegexPattern_ThrowsExcapetion()
+        {
+            try
+            {
+                string pwd = "hari@";
+                UserRegistrationRegEx.UserRegistrationCheck check = new UserRegistrationRegEx.UserRegistrationCheck();
+                bool actualResult = check.ValidatePasswordRule4(pwd);
+            }
+            catch (UserRegistrationRegEx.UserDetailsException exc)
+            {
+                Assert.AreEqual("Invalid Password", exc.Message);
+            }
 
         }
 

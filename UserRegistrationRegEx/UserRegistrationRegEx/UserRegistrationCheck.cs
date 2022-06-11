@@ -10,12 +10,12 @@ namespace UserRegistrationRegEx
     public class UserRegistrationCheck
     {
         string firstName = "^[A-Z]{1}[a-z]{2,}";
-        string lastName  = "^[A-Z]{1}[a-z]{2,}";
+        string lastName = "^[A-Z]{1}[a-z]{2,}";
         string email = "^(abc).?(xyz)?@(bl){1}.?(co)?.(in){1}";
         string phone = @"^[0-9]{2}\s[0-9]{10}$";
         string password = "[a-z]*";
         string oneUpperCase = @"[A-Z]+";
-        string hasMin8Chars =@".{8,}";
+        string hasMin8Chars = @".{8,}";
         string hasANumber = @"[0-9]+";
         string specialChar = @"[\W]+";
         string sampleMailIds = "^[a-zA-Z]+[0-9]*([._+-][0-9A-Za-z]+)*@[a-zA-Z]+.([a-zA-Z]{2,}.)?[a-zA-Z]{2,3}$";
@@ -27,8 +27,11 @@ namespace UserRegistrationRegEx
                 Console.WriteLine("First Name Entered is Valid");
                 return true;
             }
-            Console.WriteLine("First name isn't Valid...Re-Enter!");
-            return false;
+            else{
+                Console.WriteLine("First name isn't Valid...Re-Enter!");
+                throw new UserDetailsException(UserDetailsException.ExceptionType.INVALID_FIRSTNAME, "Invalid First Name");
+            
+            }
         }
         public bool LastNameValidCheck(string lname)
         {
@@ -37,8 +40,12 @@ namespace UserRegistrationRegEx
                 Console.WriteLine("Last Name Entered is Valid");
                 return true;
             }
-            Console.WriteLine("Last name isn't Valid...Re-Enter!");
-            return false;
+            else
+            {
+                Console.WriteLine("Last name isn't Valid...Re-Enter!");
+                throw new UserDetailsException(UserDetailsException.ExceptionType.INVALID_LASTNAME, "Invalid Last Name");
+
+            }
         }
         public void ValidateMailId(string mailId)
         {
@@ -48,6 +55,8 @@ namespace UserRegistrationRegEx
                 return;
             }
             Console.WriteLine("Email-Id isn't Valid...Re-Enter!");
+           
+            
         }
 
         public bool ValidatePhoneNo(string phoneNo)
@@ -57,8 +66,11 @@ namespace UserRegistrationRegEx
                 Console.WriteLine("Entered Phone No is Valid");
                 return true;
             }
-            Console.WriteLine("Phone Number isn't Valid...Re-Enter!");
-            return false;
+            else
+            {
+                Console.WriteLine("Phone Number isn't Valid...Re-Enter!");
+                throw new UserDetailsException(UserDetailsException.ExceptionType.INVALID_PHNUMBER, "Invalid Phone Number");
+            }
         }
         public void ValidatePassword(string pwd)
         {
@@ -92,13 +104,16 @@ namespace UserRegistrationRegEx
         public bool ValidatePasswordRule4(string pwd)
         {
             if (Regex.Match(pwd, password).Success && Regex.Match(pwd, hasMin8Chars).Success && Regex.Match(pwd, oneUpperCase).Success &&
-                Regex.Match(pwd, hasANumber).Success && Regex.Match(pwd,specialChar).Success)
+                Regex.Match(pwd, hasANumber).Success && Regex.Match(pwd, specialChar).Success)
             {
                 Console.WriteLine("Entered Password is valid & passes rule-4");
                 return true;
             }
-            Console.WriteLine("Password isn't Valid-Must have atleast 1 special Character...Re-Enter!");
-            return false;
+            else
+            {
+                Console.WriteLine("Password isn't Valid-Must have atleast 1 special Character...Re-Enter!");
+                throw new UserDetailsException(UserDetailsException.ExceptionType.INVALID_PASSWORD, "Invalid Password");
+            }
         }
 
         public bool CheckSampleMailIds(string emailID)
@@ -108,8 +123,11 @@ namespace UserRegistrationRegEx
                 Console.WriteLine("Email-Id -- {0} --> Valid", emailID);
                 return true;
             }
-            Console.WriteLine("Email-Id -- {0} --> INVALID...Re-Enter!", emailID);
-            return false;
+            else
+            {
+                Console.WriteLine("Email-Id -- {0} --> INVALID...Re-Enter!", emailID);
+                throw new UserDetailsException(UserDetailsException.ExceptionType.INVALID_EMAIL, "Invalid EmailID");
+            }
         }
         
     }
