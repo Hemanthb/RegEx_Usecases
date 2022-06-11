@@ -44,6 +44,18 @@ namespace UserRegistrationTest
             bool actualResult = check.ValidatePhoneNo(phno);
             Assert.IsTrue(actualResult);
         }
+        [Test]
+        public void GivenSampleMailIds_ChecksRegexPattern_ReturnTrueIfMatches()
+        {
+            UserRegistrationRegEx.UserRegistrationCheck check = new UserRegistrationRegEx.UserRegistrationCheck();
+            string[] sampleId = File.ReadAllLines(@"D:\blabz_fellowship\RegEx_Usecases\UserRegistrationRegEx\UserRegistrationRegEx\MailIds.txt");
+            bool actualResult;
+            foreach (string id in sampleId)
+                Assert.IsTrue(check.CheckSampleMailIds(id));
+
+
+
+        }
 
     }
 }
