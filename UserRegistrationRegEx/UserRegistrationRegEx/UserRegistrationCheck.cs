@@ -20,23 +20,25 @@ namespace UserRegistrationRegEx
         string specialChar = @"[\W]+";
         string sampleMailIds = "^[a-zA-Z]+[0-9]*([._+-][0-9A-Za-z]+)*@[a-zA-Z]+.([a-zA-Z]{2,}.)?[a-zA-Z]{2,3}$";
 
-        public void FirstNameValidCheck(string fname)
+        public bool FirstNameValidCheck(string fname)
         {
             if (Regex.Match(fname, firstName).Success)
             {
                 Console.WriteLine("First Name Entered is Valid");
-                return;
+                return true;
             }
             Console.WriteLine("First name isn't Valid...Re-Enter!");
+            return false;
         }
-        public void LastNameValidCheck(string lname)
+        public bool LastNameValidCheck(string lname)
         {
             if (Regex.Match(lname, lastName).Success)
             {
                 Console.WriteLine("Last Name Entered is Valid");
-                return;
+                return true;
             }
             Console.WriteLine("Last name isn't Valid...Re-Enter!");
+            return false;
         }
         public void ValidateMailId(string mailId)
         {
@@ -48,14 +50,15 @@ namespace UserRegistrationRegEx
             Console.WriteLine("Email-Id isn't Valid...Re-Enter!");
         }
 
-        public void ValidatePhoneNo(string phoneNo)
+        public bool ValidatePhoneNo(string phoneNo)
         {
             if (Regex.Match(phoneNo, phone).Success)
             {
                 Console.WriteLine("Entered Phone No is Valid");
-                return;
+                return true;
             }
             Console.WriteLine("Phone Number isn't Valid...Re-Enter!");
+            return false;
         }
         public void ValidatePassword(string pwd)
         {
@@ -86,25 +89,27 @@ namespace UserRegistrationRegEx
             }
             Console.WriteLine("Password isn't Valid-Must have atleast 1 number...Re-Enter!");
         }
-        public void ValidatePasswordRule4(string pwd)
+        public bool ValidatePasswordRule4(string pwd)
         {
             if (Regex.Match(pwd, password).Success && Regex.Match(pwd, hasMin8Chars).Success && Regex.Match(pwd, oneUpperCase).Success &&
                 Regex.Match(pwd, hasANumber).Success && Regex.Match(pwd,specialChar).Success)
             {
                 Console.WriteLine("Entered Password is valid & passes rule-4");
-                return;
+                return true;
             }
             Console.WriteLine("Password isn't Valid-Must have atleast 1 special Character...Re-Enter!");
+            return false;
         }
 
-        public void CheckSampleMailIds(string emailID)
+        public bool CheckSampleMailIds(string emailID)
         {
             if (Regex.Match(emailID.Trim(), sampleMailIds).Success)
             {
                 Console.WriteLine("Email-Id -- {0} --> Valid", emailID);
-                return;
+                return true;
             }
             Console.WriteLine("Email-Id -- {0} --> INVALID...Re-Enter!", emailID);
+            return false;
         }
         
     }
